@@ -1,3 +1,8 @@
+"""
+general_manager.py
+
+General manager to initiliase required specific managers.
+"""
 from typing import Tuple, Callable
 
 import numpy as np
@@ -28,21 +33,26 @@ class GeneralManager:
         self.yaxis.open_device()
 
     def move(self, x: float, y: float):
+        """ Move the arm to the specified position. """
         self.xmotion_manager.move(x)
         self.ymotion_manager.move(y)
 
     def move_user(self, x: float, y: float):
+        """ Move the arm to the specified position with user specified unit. """
         self.xmotion_manager.move_user(x)
         self.ymotion_manager.move_user(y)
 
     def wait_for_stop_ms(self, interval: int):
+        """ Wait for the arm to stop moving. """
         self.xmotion_manager.wait_for_stop_ms(interval)
         self.ymotion_manager.wait_for_stop_ms(interval)
 
     def get_pos(self):
+        """ Get the current position of the arm. """
         return self.xmotion_manager.get_pos(), self.ymotion_manager.get_pos()
 
     def get_pos_user(self):
+        """ Get the current position of the arm with user specified unit. """
         return self.xmotion_manager.get_pos_user(), self.ymotion_manager.get_pos_user()
 
     @staticmethod
@@ -65,7 +75,7 @@ class GeneralManager:
         )
         points = np.array([x, y])
         return rotation_matrix.dot(points)
-    
+
     def align_to_max_pos(self, x: float, y: float, func: Callable) -> None:
         """
         Align the grating coupler to the chip.
@@ -79,7 +89,7 @@ class GeneralManager:
         func : Callable
             The search algorithm
         """
-        pos = self._calc_position(self.chip_config.x - x, 
+        pos = self._calc_position(self.chip_config.x - x,
                                   self.chip_config.y + y, self.chip_config.angle)
         xs, ys = func(*pos)
         for x in xs:

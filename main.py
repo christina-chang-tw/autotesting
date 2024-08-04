@@ -1,13 +1,19 @@
+"""
+main.py
+
+This is the main script to run the alignment process.
+"""
 from pathlib import Path
-import numpy as np
 from functools import partial
 
+import numpy as np
 import libximc.highlevel as ximc
 
 from pyximc.manager import SelectionManager, GeneralManager, ChipConfig
 from pyximc.pattern import sampler, grid_search
 
 def main():
+    """ Entry point. """
     ### Please change this part ################################
     file = Path(r"coord.csv")
 
@@ -15,7 +21,7 @@ def main():
     uri_larm_y = SelectionManager().get_uri(SelectionManager.DeviceType.VIRT_DEVICE)
     uri_rarm_x = SelectionManager().get_uri(SelectionManager.DeviceType.VIRT_DEVICE)
     uri_rarm_y = SelectionManager().get_uri(SelectionManager.DeviceType.VIRT_DEVICE)
-    
+
     ############################################################
     coord = np.loadtxt(file)
     chip_config = ChipConfig(x=0, y=0, width=10, height=20, angle=0)
@@ -36,10 +42,9 @@ def main():
 
         gm_larm.wait_for_stop_ms(1)
         gm_rarm.wait_for_stop_ms(1)
-        
+
         gm_larm.align_to_max_pos(x0, y0, search_algor)
         gm_rarm.align_to_max_pos(x1, y1, search_algor)
 
 if __name__ == "__main__":
     main()
-

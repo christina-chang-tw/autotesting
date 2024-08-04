@@ -22,7 +22,10 @@ class SettingManager:
         move_settings.Decel = decel
         self.axis.set_move_settings_calb(move_settings)
 
-    def change_edges_settings(self, border_flags: ximc.BorderFlags, ender_flags: ximc.EnderFlags, left_border: int, right_border: int, uleft_border: int, uright_border: int):
+    def change_edges_settings(
+        self, border_flags: ximc.BorderFlags, ender_flags: ximc.EnderFlags,
+        left_border: int, right_border: int, uleft_border: int, uright_border: int
+    ) -> None:
         """View and configure the limit switch mode."""
         edges_settings = self.axis.get_edges_settings()
         edges_settings.BorderFlags = border_flags
@@ -32,7 +35,10 @@ class SettingManager:
         edges_settings.uLeftBorder = uleft_border
         edges_settings.uRightBorder = uright_border
 
-    def change_edges_settings_user(self, border_flags: ximc.BorderFlags, ender_flags: ximc.EnderFlags, left_border: float, right_border: float):
+    def change_edges_settings_user(
+        self, border_flags: ximc.BorderFlags, ender_flags: ximc.EnderFlags,
+        left_border: float, right_border: float
+    ) -> None:
         """View and configure the limit switch mode in user unit mode."""
         edges_settings = self.axis.get_edges_settings_calb()
         edges_settings.BorderFlags = border_flags
@@ -88,7 +94,8 @@ class SettingManager:
         self.axis.set_pid_settings(pid_settings)
 
     def change_control_sttings(
-            self, max_speed: List[int], umax_speed: List[int], timeout: List[int], max_click_time: List[int], flags: ximc.ControlFlags, delta_pos: int, udelta_pos: int
+            self, max_speed: List[int], umax_speed: List[int], timeout: List[int],
+            max_click_time: List[int], flags: ximc.ControlFlags, delta_pos: int, udelta_pos: int
     ) -> None:
         """
         Control settings
@@ -121,7 +128,8 @@ class SettingManager:
         self.axis.set_control_settings(control_settings)
 
     def change_control_sttings_user(
-        self, max_speed: List[float], timeout: List[int], max_click_time: int, flags: ximc.ControlFlags, delta_pos: float
+        self, max_speed: List[float], timeout: List[int],
+        max_click_time: int,flags: ximc.ControlFlags, delta_pos: float
     ) -> None:
         """
         Control settings in user unit mode
@@ -146,8 +154,3 @@ class SettingManager:
         control_settings.Flags = flags
         control_settings.DeltaPosition = delta_pos
         self.axis.set_control_settings_calb(control_settings)
-
-    
-        
-
-

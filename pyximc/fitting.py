@@ -1,3 +1,8 @@
+"""
+fitting.py
+
+This module contains the fitting algorithms used to find the maximum position of the 2D plane.
+"""
 from typing import Tuple
 
 import numpy as np

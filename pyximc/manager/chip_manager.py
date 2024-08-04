@@ -1,3 +1,8 @@
+"""
+chip_manager.py
+
+Chip configuration manager.
+"""
 from dataclasses import dataclass
 
 @dataclass

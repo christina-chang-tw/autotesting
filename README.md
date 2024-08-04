@@ -28,4 +28,5 @@ python convert.py <C:/path/to/file.xlsx> -s="sheet 1"
 
 **user_setting.yml**: This defines the appropriate settings for the controller. It is loaded everytime main.py is run.
 
+**example**: These store default files and settings given by the vendor.
 

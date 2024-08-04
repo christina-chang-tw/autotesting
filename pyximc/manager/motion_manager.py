@@ -1,3 +1,8 @@
+"""
+motion_manager.py
+
+Movement Manager.
+"""
 from time import sleep
 from typing import Tuple
 
@@ -48,12 +53,13 @@ class MotionManager:
         self.axis.command_home()
 
     def get_pos(self) -> None:
+        """ Get the current position. """
         return self.axis.get_position()
-    
+
     def get_pos_user(self) -> None:
+        """ Get the current position in user unit mode. """
         return self.axis.get_position_calb()
     
     def get_status(self) -> None:
+        """ Get the current status. """
         return self.axis.get_status()
-
-    

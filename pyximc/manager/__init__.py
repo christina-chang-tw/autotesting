@@ -1,3 +1,6 @@
+"""
+__init__.py file for pyximc.manager package.
+"""
 from pyximc.manager.chip_manager import ChipConfig
 from pyximc.manager.motion_manager import MotionManager
 from pyximc.manager.extio_manager import EXTIOManager

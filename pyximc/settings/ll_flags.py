@@ -125,13 +125,16 @@ class BrakeFlags(IntFlag):
     BRAKE_ENG_PWROFF = 2
     BRAKE_ENABLED = 1
 
-class Control_Flags(IntFlag):
+class ControlFlags(IntFlag):
     CONTROL_BTN_RIGHT_PUSHED_OPEN = 8
     CONTROL_BTN_LEFT_PUSHED_OPEN = 4
     CONTROL_MODE_BITS = 3
     CONTROL_MODE_LR = 2
     CONTROL_MODE_JOY = 1
-    CONTROL_MODE_OFF = 0#
+    CONTROL_MODE_OFF = 0
+
+class CtrlFlags(IntFlag):
+    EEPROM_PRECEDENCE = 1
 
 class CTPFlags(IntFlag):
     CTP_ERROR_CORRECTION = 16

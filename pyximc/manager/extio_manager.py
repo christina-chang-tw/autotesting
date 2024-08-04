@@ -1,8 +1,12 @@
+"""
+extio_manager.py
+
+External input / output settings Manager.
+"""
 from enum import Enum
 
 import libximc.highlevel as ximc
 from libximc.highlevel import ExtioModeFlags, ExtioSetupFlags
-from ..util import interface_repeater
 
 class EXTIOManager:
     """External input / output settings Manager."""
@@ -40,7 +44,7 @@ class EXTIOManager:
         extio_settings = self.axis.get_extio_settings()
         if direction == EXTIOManager.Direction.INPUT:
             extio_settings.EXTIOSetupFlags = 0
-        if direction == EXTIOManager.Direction.OUTPUT or direction == EXTIOManager.Direction.INV_OUTPUT:
+        if direction in [EXTIOManager.Direction.OUTPUT, EXTIOManager.Direction.INV_OUTPUT]:
             extio_settings.EXTIOSetupFlags = ExtioSetupFlags.EXTIO_SETUP_OUTPUT
             if direction == EXTIOManager.Direction.INV_OUTPUT:
                 extio_settings.EXTIOSetupFlags |= ExtioSetupFlags.EXTIO_SETUP_INVERT

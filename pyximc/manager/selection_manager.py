@@ -1,4 +1,8 @@
-"""This module is an extended example of using the libximc library to control 8SMC series using the Python language"""
+"""
+selection_manager.py
+
+Device selection Manager.
+"""
 import os
 import platform
 from enum import Enum
@@ -8,6 +12,7 @@ import libximc.highlevel as ximc
 from libximc.highlevel import EnumerateFlags
 
 class SelectionManager:
+    """ Device selection Manager. """
     class DeviceType(Enum):
         COM_DEVICE = 1
         VIRT_DEVICE = 2
@@ -64,3 +69,8 @@ class SelectionManager:
         # "addr=" hint is used for broadcast network enumeration
         enum_hints = "addr="
         return ximc.enumerate_devices(enum_flags, enum_hints)
+    
+    @staticmethod
+    def create_virtual_device():
+        tempdir = os.path.join(os.path.expanduser('~'), "testdevice.bin")
+        return "xi-emu:///" + tempdir

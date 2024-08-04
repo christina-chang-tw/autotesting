@@ -1,7 +1,8 @@
 from typing import Dict, Union
-from ctypes import c_uint, CDLL, WinDLL
+from ctypes import c_uint, CDLL, WinDLL, byref
+from importlib import import_module
 
-from libximc.highlevel import Axis
+from libximc.highlevel import Axis, Result
 
 def hl_settings(lib: Axis, data: Dict):
     """
@@ -12,6 +13,7 @@ def hl_settings(lib: Axis, data: Dict):
         data (Dict): Dictionary with settings. This should be loaded from a yaml file.
     """
     import libximc.highlevel as hlximc
+    worse_result = Result.Ok
     for key, values in data.items():
         settings = getattr(hlximc, key + "_t")()
         for k, v in values.items():
@@ -19,7 +21,7 @@ def hl_settings(lib: Axis, data: Dict):
                 setattr(settings, k, v)
 
             elif isinstance(v, str):
-                # since there are two flags in the yaml file, make an exception
+                # simply setting the string
                 contains = ["name", "manufacturer", "partnumber"]
                 if any((val in k.lower() for val in contains)):
                     setattr(settings, k, v)
@@ -31,12 +33,22 @@ def hl_settings(lib: Axis, data: Dict):
                     class_name = getattr(hlximc, k)
 
                 if "," in v:
+                    # dealing with multiple flags
                     vals = v.split(",")
                     flag = getattr(class_name, vals[0].lstrip().rstrip())
                     for val in vals[1:]:
                         flag |= getattr(class_name, val.lstrip().rstrip())
                 else:
+                    # single flag
                     flag = getattr(class_name, v)
+
+                # some class and flags have different names :()
+                if "secureflags" == k.lower():
+                    k = "Flags"
+                if "extio" in k.lower():
+                    k = "EXTIO" + k[5:]
+                if "ctpflags" in k.lower():
+                    k = "CTPFlags"
                 setattr(settings, k, flag)
 
             elif isinstance(v, list):
@@ -51,10 +63,14 @@ def hl_settings(lib: Axis, data: Dict):
                 raise ValueError(f"Unknown type: {k}: {type(v)}")
 
         setting_func = getattr(lib, "set_" + key)
-        setting_func(settings)
+        result = setting_func(settings)
+        if result != Result.Ok and worse_result in [Result.Ok, Result.ValueError]:
+            worse_result = result
+
+    return worse_result
 
 
-def ll_settings(lib: Union[CDLL, WinDLL], lib_id: int, data: Dict):
+def ll_settings(lib: Union[CDLL, WinDLL], lib_id: int, data: Dict, module: str="pyximc.settings.ll_flags"):
     """
     Low-level interface user settings.
 
@@ -62,9 +78,12 @@ def ll_settings(lib: Union[CDLL, WinDLL], lib_id: int, data: Dict):
         lib (Axis): Axis object.
         lib_id (int): Axis ID.
         data (Dict): Dictionary with settings. This should be loaded from a yaml file.
+        module (str, optional): Module name. Defaults to "pyximc.settings.ll_flags". This is the module where the flags are defined.
     """
     import libximc.lowlevel as llximc
-    import pyximc.settings.ll_flags
+    module = import_module(module)
+
+    worse_result = Result.Ok
     for key, values in data.items():
         settings = getattr(llximc, key + "_t")()
         for k, v in values.items():
@@ -74,9 +93,9 @@ def ll_settings(lib: Union[CDLL, WinDLL], lib_id: int, data: Dict):
             elif isinstance(v, str):
                 # since there are two flags in the yaml file, make an exception
                 if "control" in key.lower() and k.lower() == "flags":
-                    class_name = getattr(pyximc.settings.ll_flags, "Control_" + k)
+                    class_name = getattr(module, "Control" + k)
                 else:
-                    class_name = getattr(pyximc.settings.ll_flags, k)
+                    class_name = getattr(module, k)
 
                 if "," in v:
                     flag = 0
@@ -101,4 +120,8 @@ def ll_settings(lib: Union[CDLL, WinDLL], lib_id: int, data: Dict):
                 raise ValueError(f"Unknown type: {k}: {type(v)}")
         
         setting_func = getattr(lib, "set_" + key)
-        setting_func(lib_id, settings)
+        result = setting_func(lib_id, byref(settings))
+        if result != Result.Ok and worse_result in [Result.Ok, Result.ValueError]:
+            worse_result = result
+
+    return worse_result
