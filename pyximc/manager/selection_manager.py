@@ -5,6 +5,7 @@ from enum import Enum
 from typing import List, Union
 
 import libximc.highlevel as ximc
+from libximc.highlevel import EnumerateFlags
 
 class SelectionManager:
     class DeviceType(Enum):
@@ -32,28 +33,21 @@ class SelectionManager:
             if platform.system() == "Windows":
                 uri = r"xi-com:\\.\COM" + param
             else:
-                print("Enter the port number:")
                 uri = f"xi-com:/dev/tty.s{param}"
 
         elif device_type == SelectionManager.DeviceType.VIRT_DEVICE:
-            uri = "xi-emu:///" + os.path.join(os.path.expanduser('~'), "virtual_controller.bin")
+            if param:
+                uri = f"xi-emu///{param}"
+            else:
+                uri = "xi-emu:///" + os.path.join(os.path.expanduser('~'), "virtual_controller.bin")
 
         elif device_type == SelectionManager.DeviceType.NETWORK_DEVICE:
             # i.e. xi-net://192.168.0.1
             return f"xi-net://{param}"
 
-        elif device_type == SelectionManager.DeviceType.ALL_DEVICES:
-            devenum = self.get_devices_enumeration()
-
-            if len(devenum) > 0:
-                index = self.ask_for_device_index(devenum)
-                uri = devenum[index]["uri"]
-            else:
-                # set path to virtual device file to be created
-                tempdir = os.path.join(os.path.expanduser('~'), "testdevice.bin")
-                uri = "xi-emu:///" + tempdir
         else:
             raise RuntimeError(f"Wrong device type! Got {device_type}")
+
         return uri
         
     @staticmethod
@@ -65,8 +59,7 @@ class SelectionManager:
         # Flags explanation:
         # ximc.EnumerateFlags.ENUMERATE_PROBE   -   Probing found devices for detailed info.
         # ximc.EnumerateFlags.ENUMERATE_NETWORK -   Check network devices.
-        enum_flags = ximc.EnumerateFlags.ENUMERATE_PROBE | ximc.EnumerateFlags.ENUMERATE_NETWORK
-
+        enum_flags = EnumerateFlags.ENUMERATE_PROBE | EnumerateFlags.ENUMERATE_NETWORK
         # Hint explanation:
         # "addr=" hint is used for broadcast network enumeration
         enum_hints = "addr="

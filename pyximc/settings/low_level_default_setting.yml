@@ -1,0 +1,229 @@
+# To add more settings, please make sure you take a look at the libximc lowlevel definitions! Please do not modify this file but instead modify the user_setting.yml file.
+feedback_settings:
+  IPS: 4000
+  FeedbackType: FEEDBACK_EMF
+  FeedbackFlags: FEEDBACK_ENC_TYPE_SINGLE_ENDED,FEEDBACK_ENC_REVERSE,FEEDBACK_ENC_TYPE_AUTO
+  CountsPerTurn: 4000
+
+home_settings:
+  FastHome: 500
+  uFastHome: 0
+  SlowHome: 500
+  uSlowHome: 0
+  HomeDelta: 542
+  uHomeDelta: 0
+  HomeFlags: HOME_USE_FAST,HOME_STOP_SECOND_REV,HOME_STOP_FIRST_BITS,HOME_DIR_SECOND
+
+move_settings:
+  Speed: 2000
+  uSpeed: 0
+  Accel: 2000
+  Decel: 5000
+  AntiplaySpeed: 2000
+  uAntiplaySpeed: 0
+  MoveFlags: 0x00
+
+engine_settings:
+  NomVoltage: 360
+  NomCurrent: 670
+  NomSpeed: 4000
+  uNomSpeed: 0
+  EngineFlags: ENGINE_LIMIT_RPM,ENGINE_ACCEL_ON,ENGINE_REVERSE
+  Antiplay: 1800
+  MicrostepMode: MICROSTEP_MODE_FRAC_256
+  StepsPerRev: 200
+
+entype_settings:
+  EngineType: ENGINE_TYPE_STEP,ENGINE_TYPE_NONE
+  DriverType: DRIVER_TYPE_INTEGRATE
+
+power_settings:
+  HoldCurrent: 50
+  CurrReductDelay: 1000
+  PowerOffDelay: 60
+  CurrentSetTime: 300
+  PowerFlags: POWER_SMOOTH_CURRENT,POWER_REDUCT_ENABLED
+
+secure_settings:
+  LowUpwrOff: 800
+  CriticalIpwr: 4000
+  CriticalUpwr: 5500
+  CriticalT: 800
+  CriticalIusb: 450
+  CriticalUusb: 520
+  MinimumUusb: 420
+  Flags: ALARM_ENGINE_RESPONSE,ALARM_FLAGS_STICKING,ALARM_ON_BORDERS_SWAP_MISSET,H_BRIDGE_ALERT,ALARM_ON_DRIVER_OVERHEATING
+
+edges_settings:
+  BorderFlags: BORDER_STOP_LEFT,BORDER_STOP_RIGHT
+  EnderFlags: ENDER_SW2_ACTIVE_LOW,ENDER_SW1_ACTIVE_LOW,ENDER_SWAP
+  LeftBorder: -42
+  uLeftBorder: 0
+  RightBorder: 18958
+  uRightBorder: 0
+
+pid_settings:
+  KpU: 0
+  KiU: 0
+  KdU: 0
+  Kpf: 0.006000000052154064
+  Kif: 0.05000000074505806
+  Kdf: 2.8000000384054147E-05
+
+sync_in_settings:
+  ClutterTime: 4
+  Position: 0
+  uPosition: 0
+  Speed: 0
+  uSpeed: 0
+
+sync_out_settings:
+  SyncOutFlags: SYNCOUT_ONSTOP,SYNCOUT_ONSTART
+  SyncOutPulseSteps: 100
+  SyncOutPeriod: 2000
+  Accuracy: 0
+  uAccuracy: 0
+
+extio_settings:
+  EXTIOSetupFlags: EXTIO_SETUP_OUTPUT
+  EXTIOModeFlags: EXTIO_SETUP_MODE_IN_STOP,EXTIO_SETUP_MODE_IN_NOP,EXTIO_SETUP_MODE_OUT_OFF
+
+brake_settings:
+  t1: 300
+  t2: 500
+  t3: 300
+  t4: 400
+  BrakeFlags: BRAKE_ENG_PWROFF
+
+control_settings:
+  MaxSpeed: [20, 200, 2000, 0, 0, 0, 0, 0, 0, 0]
+  uMaxSpeed: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  Timeout: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
+  MaxClickTime: 300
+  Flags: CONTROL_MODE_LR,CONTROL_MODE_OFF
+  DeltaPosition: 1
+  uDeltaPosition: 0
+
+joystick_settings:
+  JoyLowEnd: 0
+  JoyCenter: 5000
+  JoyHighEnd: 10000
+  ExpFactor: 100
+  DeadZone: 50
+
+ctp_settings:
+  CTPMinError: 3
+  CTPFlags: CTP_ERROR_CORRECTION
+
+uart_settings:
+  Speed: 115200
+  UARTSetupFlags: UART_PARITY_BIT_EVEN
+
+controller_name:
+  ControllerName: [0, 113, 252, 118, 36, 0, 72, 0, 3, 0, 0, 0, 104, 101, 103, 0]
+
+emf_settings:
+  L: 0.005400000140070915
+  R: 7.400000095367432
+  Km: 0.0024999999441206455
+
+engine_advansed_setup:
+  stepcloseloop_Kw: 50
+  stepcloseloop_Kp_low: 1000
+  stepcloseloop_Kp_high: 33
+
+extended_settings:
+  Param1: 0
+
+stage_name:
+  PositionerName: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+stage_information:
+  Manufacturer: [0, 116, 97, 110, 100, 97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  PartNumber: [56, 77, 84, 49, 55, 51, 45, 50, 53, 45, 77, 69, 110, 49, 0, 0, 69, 51, 0, 0, 0, 0, 0, 0]
+
+stage_settings:
+  LeadScrewPitch: 0.25
+  Units: [0, 109, 0, 114, 101, 101, 0, 0]
+  MaxSpeed: 5
+  TravelRange: 25
+  SupplyVoltageMin: 0
+  SupplyVoltageMax: 0
+  MaxCurrentConsumption: 0
+  HorizontalLoadCapacity: 0
+  VerticalLoadCapacity: 0
+
+motor_information:
+  Manufacturer: [0, 111, 116, 105, 111, 110, 32, 67, 111, 110, 116, 114, 111, 108, 32, 80]
+  PartNumber: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+motor_settings:
+  MotorType: MOTOR_TYPE_STEP,MOTOR_TYPE_UNKNOWN
+  ReversedField: 0
+  Poles: 0
+  Phases: 0
+  NominalVoltage: 0
+  NominalCurrent: 0
+  NominalSpeed: 0
+  NominalTorque: 0
+  NominalPower: 0
+  WindingsResistance: 0
+  WindingsInductance: 0
+  RotorInertia: 0
+  StallTorque: 0
+  DetentTorque: 0
+  TorqueConstant: 0
+  SpeedConstant: 0
+  SpeedTorqueGradient: 0
+  MechanicalTimeConstant: 0
+  MaxSpeed: 5000
+  MaxCurrent: 0
+  MaxCurrentTime: 0
+  NoLoadCurrent: 0
+  NoLoadSpeed: 0
+
+encoder_information:
+  Manufacturer: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  PartNumber: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+encoder_settings:
+  MaxOperatingFrequency: 100
+  SupplyVoltageMin: 0
+  SupplyVoltageMax: 0
+  MaxCurrentConsumption: 0
+  PPR: 1000
+
+hallsensor_information:
+  Manufacturer: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  PartNumber: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+hallsensor_settings:
+  MaxOperatingFrequency: 0
+  SupplyVoltageMin: 0
+  SupplyVoltageMax: 0
+  MaxCurrentConsumption: 0
+  PPR: 0
+
+gear_information:
+  Manufacturer: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  PartNumber: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+gear_settings:
+  ReductionIn: 1
+  ReductionOut: 1
+  RatedInputTorque: 0
+  RatedInputSpeed: 0
+  MaxOutputBacklash: 0
+  InputInertia: 0
+  Efficiency: 0
+
+accessories_settings:
+  MagneticBrakeInfo: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  MBRatedVoltage: 0
+  MBRatedCurrent: 0
+  MBTorque: 0
+  TemperatureSensorInfo: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  TSMin: 0
+  TSMax: 0
+  TSGrad: 0
+  TSSettings: TS_TYPE_THERMOCOUPLE, TS_TYPE_UNKNOWN

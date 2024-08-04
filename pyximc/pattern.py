@@ -29,5 +29,5 @@ def grid_search(x: float, y: float, func: Callable):
     """
     xs = func(center=x)
     ys = func(center=y)
-    xs, ys = np.meshgrid(x, y)
+    # xs, ys = np.meshgrid(xs, ys)
     return xs, ys

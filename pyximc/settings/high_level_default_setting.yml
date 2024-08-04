@@ -1,0 +1,136 @@
+# To add more settings, please make sure you take a look at the libximc highlevel/_structure_types.py definitions!
+# Please do not modify this file but create a new and modify it instead.
+feedback_settings:
+  IPS: 4000
+  FeedbackType: FEEDBACK_EMF
+  FeedbackFlags: FEEDBACK_ENC_TYPE_SINGLE_ENDED,FEEDBACK_ENC_REVERSE,FEEDBACK_ENC_TYPE_AUTO
+  CountsPerTurn: 4000
+
+home_settings:
+  FastHome: 500
+  uFastHome: 0
+  SlowHome: 500
+  uSlowHome: 0
+  HomeDelta: 542
+  uHomeDelta: 0
+  HomeFlags: HOME_USE_FAST,HOME_STOP_SECOND_REV,HOME_STOP_FIRST_BITS,HOME_DIR_SECOND
+
+move_settings:
+  Speed: 2000
+  uSpeed: 0
+  Accel: 2000
+  Decel: 5000
+  AntiplaySpeed: 2000
+  uAntiplaySpeed: 0
+
+engine_settings:
+  NomVoltage: 360
+  NomCurrent: 670
+  NomSpeed: 4000
+  uNomSpeed: 0
+  EngineFlags: ENGINE_LIMIT_RPM,ENGINE_ACCEL_ON,ENGINE_REVERSE
+  Antiplay: 1800
+  MicrostepMode: MICROSTEP_MODE_FRAC_256
+  StepsPerRev: 200
+
+entype_settings:
+  EngineType: ENGINE_TYPE_STEP,ENGINE_TYPE_NONE
+  DriverType: DRIVER_TYPE_INTEGRATE
+
+power_settings:
+  HoldCurrent: 50
+  CurrReductDelay: 1000
+  PowerOffDelay: 60
+  CurrentSetTime: 300
+  PowerFlags: POWER_SMOOTH_CURRENT,POWER_REDUCT_ENABLED
+
+secure_settings:
+  LowUpwrOff: 800
+  CriticalIpwr: 4000
+  CriticalUpwr: 5500
+  CriticalT: 800
+  CriticalIusb: 450
+  CriticalUusb: 520
+  MinimumUusb: 420
+  SecureFlags: ALARM_ENGINE_RESPONSE,ALARM_FLAGS_STICKING,ALARM_ON_BORDERS_SWAP_MISSET,H_BRIDGE_ALERT,ALARM_ON_DRIVER_OVERHEATING
+
+edges_settings:
+  BorderFlags: BORDER_STOP_LEFT,BORDER_STOP_RIGHT
+  EnderFlags: ENDER_SW2_ACTIVE_LOW,ENDER_SW1_ACTIVE_LOW,ENDER_SWAP
+  LeftBorder: -42
+  uLeftBorder: 0
+  RightBorder: 18958
+  uRightBorder: 0
+
+pid_settings:
+  KpU: 0
+  KiU: 0
+  KdU: 0
+  Kpf: 0.006000000052154064
+  Kif: 0.05000000074505806
+  Kdf: 2.8000000384054147E-05
+
+sync_in_settings:
+  ClutterTime: 4
+  Position: 0
+  uPosition: 0
+  Speed: 0
+  uSpeed: 0
+
+sync_out_settings:
+  SyncOutFlags: SYNCOUT_ONSTOP,SYNCOUT_ONSTART
+  SyncOutPulseSteps: 100
+  SyncOutPeriod: 2000
+  Accuracy: 0
+  uAccuracy: 0
+
+extio_settings:
+  ExtioSetupFlags: EXTIO_SETUP_OUTPUT
+  ExtioModeFlags: EXTIO_SETUP_MODE_IN_STOP,EXTIO_SETUP_MODE_IN_NOP,EXTIO_SETUP_MODE_OUT_OFF
+
+brake_settings:
+  t1: 300
+  t2: 500
+  t3: 300
+  t4: 400
+  BrakeFlags: BRAKE_ENG_PWROFF
+
+control_settings:
+  MaxSpeed: [20, 200, 2000, 0, 0, 0, 0, 0, 0, 0]
+  uMaxSpeed: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  Timeout: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
+  MaxClickTime: 300
+  Flags: CONTROL_MODE_LR,CONTROL_MODE_OFF
+  DeltaPosition: 1
+  uDeltaPosition: 0
+
+joystick_settings:
+  JoyLowEnd: 0
+  JoyCenter: 5000
+  JoyHighEnd: 10000
+  ExpFactor: 100
+  DeadZone: 50
+
+ctp_settings:
+  CTPMinError: 3
+  CtpFlags: CTP_ERROR_CORRECTION
+
+uart_settings:
+  Speed: 115200
+  UARTSetupFlags: UART_PARITY_BIT_EVEN
+
+controller_name:
+  ControllerName: Controller
+
+emf_settings:
+  L: 0.005400000140070915
+  R: 7.400000095367432
+  Km: 0.0024999999441206455
+
+engine_advansed_setup:
+  stepcloseloop_Kw: 50
+  stepcloseloop_Kp_low: 1000
+  stepcloseloop_Kp_high: 33
+
+stage_name:
+  PositionerName: <TBF>
